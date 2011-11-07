@@ -472,6 +472,12 @@
     // Get a model from the set by id.
     get : function(id) {
       if (id == null) return null;
+      var model = this._byId[id.id != null ? id.id : id];
+      if (typeof model == 'undefined') {
+        model = new Backbone.Model({id: id});
+        this._add(model);
+      }
+
       return this._byId[id.id != null ? id.id : id];
     },
 
